@@ -5,7 +5,7 @@ class TestHello(unittest.TestCase):
         app.testing = True
         self.app = app.test_client()
     def test_hello(self):
-        rv = self.app.get('/')
+        rv = self.app.get('/mukesh')
         self.assertEqual(rv.status, '200 OK')
 
 if __name__ == '__main__':
