@@ -9,10 +9,12 @@ node{
         echo "Cloning git repository to workspace"
         checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'incubyte_github_token', url: "https://github.com/Lucifer0143/${product}.git"]]])
     }
+
     stage('Build image') {
         echo 'Build the docker flask image'
         app = docker.build("mpatel143/${product}")
     }
+
     stage('Test image') {
         echo 'Test the docker flask image'
         app.inside {
@@ -42,7 +44,7 @@ node{
           ]]){
       
       sh '''
-              PRODUCT="cdac-project"
+              PRODUCT="incubyte-assignment"
               kubectl version --short --client
               aws eks --region ap-south-1 update-kubeconfig --name $PRODUCT-cluster
               kubectl get svc
@@ -75,7 +77,7 @@ node{
                 secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
             ]]){
         sh '''
-                PRODUCT="cdac-project"
+                PRODUCT="incubyte-assignment"
                 echo $PATH
                 kubectl get all -n $PRODUCT
                 sleep 60s
