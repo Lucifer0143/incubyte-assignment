@@ -7,7 +7,7 @@ node{
     }
     stage('Clone repository') {
         echo "Cloning git repository to workspace"
-        checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'cdac_github_token', url: "https://github.com/Lucifer0143/${product}.git"]]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'incubyte_github_token', url: "https://github.com/Lucifer0143/${product}.git"]]])
     }
 
     stage('Build image') {
